@@ -1,0 +1,12 @@
+.navbaritems{
+    font-family: 'EB Garamond', serif;
+    font-family: 'Labrada', serif;
+
+}
+.navbaritems a{
+    color: white;
+}
+.navbaritems a:hover{
+    color: rgb(85, 80, 80);
+
+}

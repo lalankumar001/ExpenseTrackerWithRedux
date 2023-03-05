@@ -1,0 +1,25 @@
+.about{
+    background-color: #777777;
+    width: 100%;
+}
+.about h1{
+    font-size: 90px;
+    font-weight: bold;
+    text-align: center;
+    height: 20vh;
+}
+.container h2{
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    height: 10vh;
+    font-family: 'Labrada', serif;
+}
+.container img{
+    border: 1px solid black;
+    border-radius: 200px;
+    width: 50%;
+    height: auto;
+    margin-left: 45%;
+
+}
