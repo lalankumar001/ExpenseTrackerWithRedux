@@ -10,12 +10,10 @@ import Login from "./Components/Auth/Login";
 import SignUp from "./Components/Auth/SignUp";
 import UpdateUser from "./Components/Auth/UpdateUser";
 
-
 function App() {
-
   return (
     <div className="App">
-      <Navbar/>
+    <Navbar/> 
       <Routes>
         <Route exact path="/" element={<Login />} />
         <Route exact path="/Login" element={<Login />} />

@@ -3,7 +3,8 @@ import { FaCartPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 
-const Navbar = (props) => {
+
+const Navbar = () => {
   return (
     <div className={styles.navbaritems}>
       <nav className="navbar navbar-expand-lg bg-dark">
@@ -25,7 +26,7 @@ const Navbar = (props) => {
           <div
             className="collapse navbar-collapse justify-content-center fs-3 fw-1"
             id="navbarNav"
-          >
+            >
             <ul className="navbar-nav ">
               <li className="nav-item ">
                 <Link

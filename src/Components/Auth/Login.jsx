@@ -3,10 +3,10 @@ import React, { useState } from 'react'
 import { sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../../../firebase'
-import styles from './Login.module.css';
-const Login = (props) => {
-  const navigate = useNavigate();
 
+import styles from './Login.module.css';
+const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('');
 
@@ -28,6 +28,7 @@ const Login = (props) => {
   }
 
   const forgotPass = async (email) => {
+    
     try {
       await sendPasswordResetEmail(auth, email);
       alert("Password reset link sent!");
@@ -52,8 +53,8 @@ const Login = (props) => {
             <input className="form-control" name="password" id="password" type="password" required placeholder='*****' value={password}
               onChange={(e) => setPassword(e.target.value)} />
           </div>
-          <button onClick={forgotPass} className='btn btn-secondary'>Forgot Password?</button>
-          <button type="submit" className="btn btn-primary" onClick={onLogin}>Login </button>
+        <button onClick={forgotPass} className='btn btn-secondary'>Forgot Password?</button> 
+     <button type="submit" className="btn btn-primary" onClick={onLogin}>Login </button>
           <Link to='/SignUp'><button type="submit" className="btn btn-primary">Don't have an account? Sign Up</button></Link>
         </form>
       </div>

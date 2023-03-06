@@ -4,7 +4,7 @@ import { getAuth , signOut } from 'firebase/auth'
 import ExpenseForm from '../../Expense/ExpenseForm'
 
 import { useSelector,useDispatch } from 'react-redux'
-import { increment , decrement ,incrementByAmount } from '../../GlobalStore/Reducer'
+import { increment , decrement ,incrementByAmount } from '../../GlobalStore/Reducer/Counter'
 
 const Home = () => {
   // showing state
@@ -27,9 +27,10 @@ const onSignOut = () =>{
  
   return (
     <>    
-      {/* <button onClick={onSignOut} className='h-25 w-25 justify-content-end btn btn-danger'>sign out</button> */}
+      <button onClick={onSignOut} className='h-25 w-25 justify-content-end btn btn-danger'>sign out</button>
     {/* <ExpenseForm />  */}
     <div className='container'>
+      <h1>Welcome to user profile</h1>
       <h1 className='text-center'>Counter</h1>
       <h1 className='text-center fs-1'>{count}</h1>
      {/* <button onClick={()=>dispatch(increment())}>Increment</button> */}
