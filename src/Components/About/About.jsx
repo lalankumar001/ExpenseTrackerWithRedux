@@ -1,8 +1,12 @@
 import React from "react";
 // import ApiCall from "./ApiCall";
 import styles from "./About.module.css";
+import { useSelector,useDispatch } from 'react-redux'
+import { increment , decrement ,incrementByAmount } from '../../GlobalStore/Reducer/Counter'
 
 const About = () => {
+  const count =useSelector((state)=>state.counter.value)
+const dispatch = useDispatch()
   return (
     <div>
       {/*Api Call Below  */}
@@ -57,6 +61,13 @@ const About = () => {
           Tenetur amet quas maiores aliquam consequatur eius nam beatae ducimus
           </p>
       </div>
+      <div className='container'>
+      <h1 className='text-center'>Counter</h1>
+      <h1 className='text-center fs-1'>{count}</h1>
+     {/* <button onClick={()=>dispatch(increment())}>Increment</button> */}
+     <button onClick={()=>dispatch(decrement(5))}>DecrementBy</button>
+     <button onClick={()=>dispatch(incrementByAmount(10))}>IncrementBy</button>
+     </div>
     </div>
   );
 };
