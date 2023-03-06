@@ -1,2 +1,2 @@
-# E-commerce
-E-commerce with react-vite , bootstrap  and External module css
+# Expense tracker using redux and vite 
+
