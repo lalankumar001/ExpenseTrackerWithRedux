@@ -1,37 +1,94 @@
-import React, { useState } from 'react'
-import styles from './ExpenseForm.module.css';
-const ExpenseForm = () => {
-  const [formData, setFormData] =useState(
-    {
-      amount:'',
-      description:'',
-      category:'',
+import React, { useState } from "react";
+import { json } from "react-router-dom";
+import styles from "./ExpenseForm.module.css";
+const ExpenseForm = (props) => {
+  const [formData, setFormData] = useState({
+    amount: "",
+    description: "",
+    category: "",
+  });
+  const SubmitHandler = async (event) => {
+    event.preventDefault();
+
+    const res = await fetch(
+      "https://expensetracker-30ad5-default-rtdb.firebaseio.com/expenses.json",
+      {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
+
+    const data = await res.json();
+
+    if (res.ok) {
+      props.onExpenseToggle();
+      console.log(data);
+    } else {
+      alert("Something went wrong. Please try again");
+      setFormData({
+        amount: "",
+        description: "",
+        category: "",
+      });
     }
-  )
-  const SubmitHandler = (event) => {
-     event.preventDefault();
-     console.log('Form submission happened');
-  }
+  };
+
+  const inputHandler = (e) => {
+    setFormData((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  };
+
   return (
     <div className={styles.ExpenseHeading}>
       <form onSubmit={SubmitHandler}>
         <label className="form-label">Amount:</label>
-        <input className="form-control" type="number" name="amount" id="amount" placeholder="₹" required />
+        <input
+          className="form-control"
+          value={formData.amount}
+          type="number"
+          name="amount"
+          id="amount"
+          placeholder="₹"
+          onChange={inputHandler}
+          required
+        />
 
-        <label className="form-label" >Description:</label>
-        <input className="form-control" type="text" name="description" id="description" placeholder="Enter description here..." required />
+        <label className="form-label">Description:</label>
+        <input
+          className="form-control"
+          onChange={inputHandler}
+          value={formData.description}
+          type="text"
+          name="description"
+          id="description"
+          placeholder="Enter description here..."
+          required
+        />
 
         <label className="form-label">category:</label>
-        <select className="form-select" id="category" name="category" required >
+        <select
+          value={formData.description}
+          className="form-select"
+          onChange={inputHandler}
+          id="category"
+          name="category"
+          required
+        >
           <option value="movie">Movies</option>
           <option value="tourism">Tourism</option>
           <option value="food">Food</option>
           <option value="shopping">Shopping</option>
         </select>
-        <button className="btn btn-dark" type='submit'>ADD EXPENCES</button>
+        <button className="btn btn-dark" type="submit">
+          ADD EXPENCES
+        </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default ExpenseForm
+export default ExpenseForm;
