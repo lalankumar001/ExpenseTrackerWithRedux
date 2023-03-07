@@ -1,10 +1,16 @@
 import React, { useContext } from "react";
-import { FaCartPlus } from "react-icons/fa";
+import {FaToggleOn } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 
 
 const Navbar = () => {
+  // Dark mode Toggle button handler 
+const darkModeHandler =()=>{
+ var element = document.body;
+ element.classList.toggle(styles['dark']);
+}
+
   return (
     <div className={styles.navbaritems}>
       <nav className="navbar navbar-expand-lg bg-dark">
@@ -30,7 +36,7 @@ const Navbar = () => {
             <ul className="navbar-nav ">
               <li className="nav-item ">
                 <Link
-                  to="/Login"
+                  to="/Home/UpdateUser"
                   className="nav-link active text-white"
                   aria-current="page"
                 >
@@ -39,27 +45,32 @@ const Navbar = () => {
               </li>
 
               <li className="nav-item">
-                <Link to="" className="nav-link">
-                  Products
+                <Link to="/Expenses" className="nav-link">
+                  Expenses
                 </Link>
               </li>
 
               <li className="nav-item">
                 <Link to="/About" className="nav-link">
-                  AboutUs
+                  Aboutus
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/Contact" className="nav-link">
-                  ContactUs
+                  Contactus
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link to="/Contact" className="nav-link">
+                  Login
                 </Link>
               </li>
             </ul>
-          </div>
         </div>
-        {/* Cart item added here */}
-        <div className="nav-item fs-6 btn btn-info mx-5">
-          Cart <FaCartPlus />
+          </div>
+        {/* Dark item toggler */}
+        <div className="nav-item fs-1 btn btn-dark mx-5"> <FaToggleOn onClick={darkModeHandler}/>
         </div>
       </nav>
     </div>

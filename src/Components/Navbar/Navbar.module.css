@@ -10,3 +10,19 @@
     color: rgb(85, 80, 80);
 
 }
+
+
+/* dark mode start here  */
+    .dark{
+        background-color: #222;
+        color: #e6e6e6;
+    }
+    .dark h1{
+        color: red;
+    }
+    .dark h2{
+        color: white;
+    }
+    .dark label{
+     color: tomato;
+    }

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-// import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../../../firebase'
@@ -16,7 +15,7 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        navigate("/Home")
+        navigate("/Home/UpdateUser")
         alert('logged in successfully' + user.email);
       })
       .catch((error) => {
@@ -27,16 +26,6 @@ const Login = () => {
 
   }
 
-  const forgotPass = async (email) => {
-    
-    try {
-      await sendPasswordResetEmail(auth, email);
-      alert("Password reset link sent!");
-    } catch (err) {
-      console.error(err);
-      alert(err.message);
-    }
-  }
   return (
     <div className={styles.LoginPageBack}>
 
@@ -53,7 +42,6 @@ const Login = () => {
             <input className="form-control" name="password" id="password" type="password" required placeholder='*****' value={password}
               onChange={(e) => setPassword(e.target.value)} />
           </div>
-        <button onClick={forgotPass} className='btn btn-secondary'>Forgot Password?</button> 
      <button type="submit" className="btn btn-primary" onClick={onLogin}>Login </button>
           <Link to='/SignUp'><button type="submit" className="btn btn-primary">Don't have an account? Sign Up</button></Link>
         </form>
