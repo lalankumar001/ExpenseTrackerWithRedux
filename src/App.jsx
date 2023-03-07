@@ -24,11 +24,7 @@ function App() {
         <Route exact path="/Home/UpdateUser" element={<UpdateUser />} />
         <Route exact path="/About" element={<About />} />
         <Route exact path="/Contact" element={<ContactUs />} />
-        {/* Login or sign in page */}
-
       </Routes>
-
-      {/* <Footer /> */}
     </div>
   );
 }
