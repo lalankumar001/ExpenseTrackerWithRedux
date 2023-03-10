@@ -1,15 +1,16 @@
-import React, { useContext } from "react";
-import {FaToggleOn } from "react-icons/fa";
+import React from "react";
+import { FaToggleOn } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 
 
 const Navbar = () => {
+
   // Dark mode Toggle button handler 
-const darkModeHandler =()=>{
- var element = document.body;
- element.classList.toggle(styles['dark']);
-}
+  const darkModeHandler = () => {
+    var element = document.body;
+    element.classList.toggle(styles['dark']);
+  }
 
   return (
     <div className={styles.navbaritems}>
@@ -18,6 +19,7 @@ const darkModeHandler =()=>{
           <Link to="/" className="navbar-brand fs-2 fw-2 text-info">
             My-Expense
           </Link>
+
           <button
             className="navbar-toggler"
             type="button"
@@ -32,7 +34,7 @@ const darkModeHandler =()=>{
           <div
             className="collapse navbar-collapse justify-content-center fs-3 fw-1"
             id="navbarNav"
-            >
+          >
             <ul className="navbar-nav ">
               <li className="nav-item ">
                 <Link
@@ -62,15 +64,15 @@ const darkModeHandler =()=>{
               </li>
 
               <li className="nav-item">
-                <Link to="/Contact" className="nav-link">
+                <Link to="/Login" className="nav-link">
                   Login
                 </Link>
               </li>
             </ul>
-        </div>
           </div>
+        </div>
         {/* Dark item toggler */}
-        <div className="nav-item fs-1 btn btn-dark mx-5"> <FaToggleOn onClick={darkModeHandler}/>
+        <div className="nav-item fs-1 btn btn-dark mx-5"> <FaToggleOn onClick={darkModeHandler} />
         </div>
       </nav>
     </div>

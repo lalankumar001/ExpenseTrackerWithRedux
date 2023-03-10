@@ -4,13 +4,13 @@
   font-size: 60px;
 }
 .ContactHeader img{
-  margin-top: 1%;
+  margin-top: 0.2%;
 }
 .ContactHeader h2{
   font-family: 'Pacifico', cursive;
   margin-left: 43%;
   position: relative;
-  margin-bottom: 30px;
+  margin-bottom: 9px;
   font-size: 30px;
 }
 .contact-form {

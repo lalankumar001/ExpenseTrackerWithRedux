@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ExpenseForm from "../Expense/ExpenseForm";
+import styles from './ExpenseCard.module.css'
 
 const Expense = () => {
   const [isShown, setIsShown] = useState(false);
@@ -10,21 +11,25 @@ const Expense = () => {
   };
 
   useEffect(() => {
-    fetch(
-      "https://expensetracker-30ad5-default-rtdb.firebaseio.com/expenses.json"
-    )
+    const url =
+      "https://expensetracker-30ad5-default-rtdb.firebaseio.com/expenses.json";
+    fetch(url, { method: "get" })
       .then((res) => {
-        if (!res.ok) {
-          throw new Error(data.message);
-        } else {
+        if (res.ok) {
           return res.json();
+        } else {
+          alert(Error(data.message));
         }
       })
       .then((data) => {
         setExpenses(data);
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [isShown]);
+
+  const editHandler = (e) => {
+    setIsShown((prev) => !prev);
+  };
 
   const deleteHandler = (key) => {
     const url = `https://expensetracker-30ad5-default-rtdb.firebaseio.com/expenses/${key}.json`;
@@ -41,27 +46,58 @@ const Expense = () => {
   };
 
   return (
+    // Add Expense button toggeler here
     <div>
-      {!isShown && <button onClick={expenseToggleHandler}>Add Expense</button>}
+      {!isShown && (
+        <button
+          onClick={expenseToggleHandler}
+          className={styles.buttonTogler}
+        >
+          Add Expense
+        </button>
+      )}
       {!isShown && expenses && (
-        <div className="container bg-dark fluid p-2">
+        <div>
           {Object.keys(expenses).map((item) => (
-            <div className="card bg-secondary" key={item}>
-              {expenses[item].amount}
-              <button className="btn btn-primary">edit</button>
-              <button
-                onClick={() => {
-                  deleteHandler(item);
-                }}
-                className="btn btn-danger"
-              >
-                X
-              </button>
+            <div className="container card mt-4 p-5" key={item}>
+              <h1 className={styles.ExpenseHeading}>Price: {expenses[item].amount} </h1>
+              <h2 className={styles.ExpenseHeading}>Description: {expenses[item].description} </h2>
+              <h3 className={styles.ExpenseHeading}>Category:  {expenses[item].category} </h3>
+               
+                <div className="container w-50">
+                <div className="row">
+                  <div className="col">
+                    <button
+                      onClick={() => {
+                        editHandler(item);
+                      }}
+                      className="btn btn-primary w-50"
+                    >
+                      edit
+                    </button>
+                  </div>
+                  <div className="col">
+                    <button
+                      onClick={() => {
+                        deleteHandler(item);
+                      }}
+                      className="btn btn-danger w-50"
+                    >
+                      X
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
+
+
           ))}
         </div>
       )}
       {isShown && <ExpenseForm onExpenseToggle={expenseToggleHandler} />}
+    {/* Expense Download Button here */}
+    <div className="position-absolute bottom-0 end-0 text-decoration-underline btn btn- text-primary" > <h3>Download Your Expense!</h3></div>
+    
     </div>
   );
 };

@@ -18,11 +18,13 @@
         color: #e6e6e6;
     }
     .dark h1{
-        color: red;
-    }
-    .dark h2{
-        color: white;
+        color: rgb(165, 64, 64);
     }
     .dark label{
      color: tomato;
     }
+.dark button{
+    background-color: rgb(248, 251, 252);
+    color: black;
+    
+}

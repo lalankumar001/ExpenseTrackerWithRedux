@@ -5,23 +5,19 @@ import { Link } from 'react-router-dom';
 const UpdateUser = () => {
   return (
     <div>
-    <div className='row w-100'>
-      <div className='col'><h3>Winner never quite, Quitters never win</h3></div>
-      <div className='col'>
-      <Link to=""> <button className='btn btn-dark'>Your profile is 64% incompleted A Complet Profile has higher chance of landing a job <b className='text-decoration-underline text-danger'>Complete Now</b></button> </Link></div>
-      <br />
-      <hr />
-      <div className='justify-content-end'>
-      <button className='btn btn-danger'>Cancel</button>
+    <button className='btn btn-dark mx-5 mb-5 w-25'>Your profile is 64% incompleted A Complet Profile has higher chance of landing a job <b className='text-decoration-underline text-danger'>Complete Now</b></button>
+     
+      <div className='container card p-5 bg-secondary'> 
+        <div className='row'>
          <h1>Contact Details</h1>
          <div className='row'>
-       <div className='col'><h3> <FaGithub /> Full Name :</h3><input type='text' /></div>
-       <div className='col'><h3><FaGlobe /> Profile Photo URL</h3><input type='text' /></div>
+       <div className='col'><h3> <FaGithub /> Full Name :</h3><input type='text'  className='border border-dark rounded-pill w-50 h-75'/></div>
+       <div className='col'><h3><FaGlobe /> Profile Photo URL</h3><input type='text'  className='border border-dark rounded-pill w-50 h-75'/></div>
          </div>
       </div>
+      <button className='btn btn-danger p-3 mt-5'>Update Profile!</button>
 
     </div>
-         <button className='btn btn-danger'>Update</button>
     </div>
   )
 }
