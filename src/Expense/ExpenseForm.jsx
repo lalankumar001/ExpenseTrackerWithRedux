@@ -1,17 +1,21 @@
 import React, { useState } from "react";
-import { json } from "react-router-dom";
+import { useSelector } from "react-redux";
 import styles from "./ExpenseForm.module.css";
+
 const ExpenseForm = (props) => {
   const [formData, setFormData] = useState({
     amount: "",
     description: "",
     category: "",
   });
+
+  const userEmail = useSelector((state) => state.auth.email);
+
   const SubmitHandler = async (event) => {
     event.preventDefault();
 
     const res = await fetch(
-      "https://expensetracker-30ad5-default-rtdb.firebaseio.com/expenses.json",
+      `https://expensetracker-30ad5-default-rtdb.firebaseio.com/expenses/${userEmail}.json`,
       {
         method: "post",
         headers: {
