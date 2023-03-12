@@ -1,10 +1,33 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { FaToggleOn } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
+import { authActions } from "../../GlobalStore/Reducer/Auth";
 import styles from "./Navbar.module.css";
+import { getAuth, signOut } from "firebase/auth";
 
 
 const Navbar = () => {
+  const auth = getAuth();
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const navigate = useNavigate();
+  const clickHandler = () => {
+    signOut(auth).then(() => {
+      alert('Sign-out successful')
+    }).catch((error) => {
+      alert('An error occurred');
+    });
+    if (isAuthenticated) {
+      // means logout
+       dispatch(authActions.logout());
+       navigate('/Login');
+  } else {
+      // means login
+      dispatch(authActions.login());
+      navigate('/Home/UpdateUser');
+  }
+};
 
   // Dark mode Toggle button handler 
   const darkModeHandler = () => {
@@ -16,7 +39,7 @@ const Navbar = () => {
     <div className={styles.navbaritems}>
       <nav className="navbar navbar-expand-lg bg-dark">
         <div className="container-fluid ">
-          <Link to="/" className="navbar-brand fs-2 fw-2 text-info">
+          <Link to="/about" className="navbar-brand fs-2 fw-2 text-info">
             My-Expense
           </Link>
 
@@ -63,9 +86,9 @@ const Navbar = () => {
                 </Link>
               </li>
 
-              <li className="nav-item">
+              <li className="nav-item" onClick={clickHandler}>
                 <Link to="/Login" className="nav-link">
-                  Login
+                {isAuthenticated ? "Logout" : "Login"}
                 </Link>
               </li>
             </ul>

@@ -2,12 +2,17 @@ import React, { useState } from 'react'
 import { sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../../../firebase'
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import styles from './Login.module.css';
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
 
   const onLogin = (e) => {
     e.preventDefault();
@@ -23,7 +28,15 @@ const Login = () => {
         const errorMessage = error.message;
         alert(errorCode, errorMessage)
       });
-
+      if (isAuthenticated) {
+        // means logout
+         dispatch(authActions.logout());
+         navigate('/Login');
+    } else {
+        // means login
+        dispatch(authActions.login());
+        navigate('/Home/UpdateUser');
+    }
   }
 
   return (

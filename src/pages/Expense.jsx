@@ -56,6 +56,7 @@ const Expense = () => {
           Add Expense
         </button>
       )}
+      <h1 className="text-center p-5 fw-bold text-secondary">Total ₹ :</h1>
       {!isShown && expenses && (
         <div>
           {Object.keys(expenses).map((item) => (
