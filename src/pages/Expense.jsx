@@ -1,3 +1,5 @@
+// below code is for geting and deleting the expense from the firebase realtime database.
+
 import React, { useEffect, useState } from "react";
 import ExpenseForm from "../Expense/ExpenseForm";
 import styles from './ExpenseCard.module.css'
