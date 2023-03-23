@@ -75,7 +75,7 @@ const ExpenseForm = (props) => {
 
         <label className="form-label">category:</label>
         <select
-          value={formData.description}
+          value={formData.category}
           className="form-select"
           onChange={inputHandler}
           id="category"

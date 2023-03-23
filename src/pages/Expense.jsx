@@ -1,17 +1,28 @@
 // below code is for geting and deleting the expense from the firebase realtime database.
-
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import ExpenseForm from "../Expense/ExpenseForm";
 import styles from './ExpenseCard.module.css'
 
+
+
+
 const Expense = () => {
+ 
   const [isShown, setIsShown] = useState(false);
   const [expenses, setExpenses] = useState({});
 
   const userEmail = useSelector((state) => state.auth.email);
-
+  
   const expenseToggleHandler = () => {
     setIsShown((prev) => !prev);
+  };
+
+//Expense download button handler 
+  const DownloadHandler =() => {
+    const ExpDown= document.getElementById("ExpenseDownload");
+    const Blob1 = new Blob(['Hello World' , 'Hello'], {type:'text/plain'});
+      ExpDown.href = URL.createObjectURL(Blob1);
   };
 
   useEffect(() => {
@@ -56,7 +67,7 @@ const Expense = () => {
           Add Expense
         </button>
       )}
-      <h1 className="text-center p-5 fw-bold text-secondary">Total ₹ :</h1>
+      {/* <h1 className="text-center p-5 fw-bold text-secondary">Total ₹ :</h1> */}
       {!isShown && expenses && (
         <div>
           {Object.keys(expenses).map((item) => (
@@ -101,7 +112,7 @@ const Expense = () => {
       )}
       {isShown && <ExpenseForm onExpenseToggle={expenseToggleHandler} />}
     {/* Expense Download Button here */}
-    <div className="position-absolute bottom-0 end-0 text-decoration-underline btn btn- text-primary" > <h3>Download Your Expense!</h3></div>
+    <div className="position-absolute bottom-0 end-0 text-decoration-underline btn btn- text-primary" > <a id="ExpenseDownload" download='file.txt' className="fs-4"   onClick={DownloadHandler}>Download Your Expense!</a></div>
     
     </div>
   );
